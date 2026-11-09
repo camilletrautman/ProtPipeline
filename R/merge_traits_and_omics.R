@@ -1,12 +1,12 @@
-#' Merge traits and omics data for use with analysis functions (e.g., MLR.R)
+#' Merge traits and omics data
 #'
 #' Merges a demographics data frame with an omics dataset, automatically
 #' detecting whether subject IDs appear as the omics column names, row names,
-#' or in a dedicated ID column.
+#' or in a dedicated ID column. Useful for downstream analyses.
 #'
 #' @param omics A data.table (preferable) or data.frame containing omics data (each column corresponding to a sample and each row a feature, such as protein, transcript, etc.)
 #' @param demographics A data.table (preferable) or data.frame containing demographics or traits data (e.g., confounders and exposure info, subject ID info)
-#' @param subject_ids A character string naming the column name associated with sample ids -- typically GUIDs for the Huels lab -- used to connect the correct omics sample to the demographics data. Defaults to `"guid"`.
+#' @param subject_ids A character string identifying the column name associated with sample ids used to connect the correct omics sample to the demographics data. Defaults to `"guid"`.
 #'
 #' @return A data.table with one row per subject found in both datasets, containing the demographic variables followed by the omics measurements.
 #'

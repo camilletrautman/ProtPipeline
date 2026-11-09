@@ -2,7 +2,7 @@
 % Please edit documentation in R/merge_traits_and_omics.R
 \name{merge_traits_and_omics}
 \alias{merge_traits_and_omics}
-\title{Merge traits and omics data for use with analysis functions (e.g., MLR.R)}
+\title{Merge traits and omics data}
 \usage{
 merge_traits_and_omics(omics, demographics, subject_ids = "guid")
 }
@@ -11,7 +11,7 @@ merge_traits_and_omics(omics, demographics, subject_ids = "guid")
 
 \item{demographics}{A data.table (preferable) or data.frame containing demographics or traits data (e.g., confounders and exposure info, subject ID info)}
 
-\item{subject_ids}{A character string naming the column name associated with sample ids -- typically GUIDs for the Huels lab -- used to connect the correct omics sample to the demographics data. Defaults to \code{"guid"}.}
+\item{subject_ids}{A character string identifying the column name associated with sample ids used to connect the correct omics sample to the demographics data. Defaults to \code{"guid"}.}
 }
 \value{
 A data.table with one row per subject found in both datasets, containing the demographic variables followed by the omics measurements.
@@ -19,7 +19,7 @@ A data.table with one row per subject found in both datasets, containing the dem
 \description{
 Merges a demographics data frame with an omics dataset, automatically
 detecting whether subject IDs appear as the omics column names, row names,
-or in a dedicated ID column.
+or in a dedicated ID column. Useful for downstream analyses.
 }
 \examples{
 # Simulate a small demographics table
