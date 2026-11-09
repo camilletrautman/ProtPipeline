@@ -1,9 +1,9 @@
 Package: ProtPipeline
-Title: What the Package Does (One Line, Title Case)
+Title: Proteomics Pipeline and High Dimensional Data Analysis
 Version: 0.0.0.9000
 Authors@R:
     person("Camille", "Trautman", , "cwtrautman@gmail.com", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
+Description: Functions for common analyses performed on proteomics or other -omics datasets in our lab.
 License: `use_mit_license()`, `use_gpl3_license()` or friends to pick a
     license
 Config/roxygen2/version: 8.1.1
