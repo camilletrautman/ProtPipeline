@@ -1,12 +1,39 @@
 #' Merge traits and omics data for use with analysis functions (e.g., MLR.R)
-
-#' @param omics A data.table (preferable) or data.frame containing omics data (each column corresponding to a sample and each row a feature, such as protein, transcript, etc.)
-#' @param demographics A data.table (preferable) or data.frame containing demographics or traits data (e.g., confounders and exposure info)
-#' @param subject_ids A character string naming the column name associated with sample ids -- typically GUIDs for the Huels lab -- used to connect the correct omics sample to the demographics data
 #'
-#' @examples
+#' Merges a demographics data frame with an omics dataset, automatically
+#' detecting whether subject IDs appear as the omics column names, row names,
+#' or in a dedicated ID column.
+#'
+#' @param omics A data.table (preferable) or data.frame containing omics data (each column corresponding to a sample and each row a feature, such as protein, transcript, etc.)
+#' @param demographics A data.table (preferable) or data.frame containing demographics or traits data (e.g., confounders and exposure info, subject ID info)
+#' @param subject_ids A character string naming the column name associated with sample ids -- typically GUIDs for the Huels lab -- used to connect the correct omics sample to the demographics data. Defaults to `"guid"`.
+#'
+#' @return A data.table with one row per subject found in both datasets, containing the demographic variables followed by the omics measurements.
 #'
 #' @export
+#'
+#' @examples
+#' # Simulate a small demographics table
+#' demographics <- data.frame(
+#'   guid = c("A1", "A2", "A3"),
+#'   age = c(34, 51, 47),
+#'   sex = c("F", "M", "F")
+#' )
+#'
+#' # Case 1: subject IDs are the omics column names (features x subjects)
+#' omics_cols <- matrix(
+#'   rnorm(12), nrow = 4,
+#'   dimnames = list(paste0("protein", 1:4), c("A1", "A2", "A3"))
+#' )
+#' merge_traits_and_omics(omics_cols, demographics)
+#'
+#' # Case 2: subject IDs are the omics row names (subjects x features)
+#' omics_rows <- as.data.frame(t(omics_cols))
+#' merge_traits_and_omics(omics_rows, demographics)
+#'
+#' # Case 3: subject IDs are in a column of the omics data
+#' omics_idcol <- cbind(guid = rownames(omics_rows), omics_rows)
+#' merge_traits_and_omics(omics_idcol, demographics)
 
 merge_traits_and_omics <- function(
   omics,
